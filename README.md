@@ -2,8 +2,8 @@
 Recommend the top k lesion cells and predict the positive probability of WSIs.
 
 # Computer requirements
-System: Win10;
-GPU: Nvidia 1080Ti or better (at least 10G memory);
+System: Win10; 
+GPU: Nvidia 1080Ti or better (at least 10G memory); 
 CPU: Intel i7 or better;
 System Memory: 16G or better
 
