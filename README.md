@@ -33,6 +33,7 @@ Model training and inferring;
 Utils classes and functions
 
 # C++ software 
-The C++ software with test WSIs is available at xx;
+The C++ software with test WSIs is available at Baidu Cloud 
+https://pan.baidu.com/s/1VRlA4njDCqmit6bwM1KAXA, extracting code is eg7l;
 Correspongding  user manual pdf is uploaded
 
