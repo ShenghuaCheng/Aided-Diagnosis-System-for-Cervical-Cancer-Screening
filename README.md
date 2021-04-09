@@ -21,11 +21,12 @@ openslide-python: 1.1.1;
 opencv-python: 3.4.1.15;
 pandas: 0.20.3;
 scikit-image: 0.17.2;
+
 scikit-learn: 0.23.2
 
 # Supported WSI formats
 WSI formats supported by the opensource OpenSlide library, including x.svs, x.mrxs, x.tif, etc;
-WSI resolution: 20× or 40× （0.1 – 0.6 m/pixel, 0.1 – 0.4 m/pixel is better)
+WSI resolution: 20× or 40× （0.1 – 0.6 um/pixel, 0.1 – 0.4 um/pixel is better)
 
 # Functions
 Model training and inferring;
