@@ -32,5 +32,7 @@ WSI resolution: 20× or 40× （0.1 – 0.6 m/pixel, 0.1 – 0.4 m/pixel i
 Model training and inferring
 Utils classes and functions 
 
-
+# C++ software 
+The C++ software with test WSIs is available at xx.
+Correspongding  user manual pdf is uploaded.
 
