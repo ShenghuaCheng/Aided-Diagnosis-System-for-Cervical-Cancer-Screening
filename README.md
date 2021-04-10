@@ -8,18 +8,18 @@ CPU: Intel i7 or better;
 System Memory: 16G or better
 
 # Environment requirements
-Nvidia GPU corresponding driver;
+Nvidia GPU corresponding driver; \
 CUDA: cuda 9.0; \
 cudnn: cudnn 7.0; \
 python: 3.6; \
-Tensorflow-gpu: 1.7.0;
-Tensorboard: 1.7.0;
-Keras: 2.1.2;
-Keras-Applications: 1.0.6;
-numpy: 1.19.5;
-openslide-python: 1.1.1;
-opencv-python: 3.4.1.15;
-pandas: 0.20.3;
+Tensorflow-gpu: 1.7.0; \
+Tensorboard: 1.7.0; \
+Keras: 2.1.2; \
+Keras-Applications: 1.0.6; \
+numpy: 1.19.5; \
+openslide-python: 1.1.1; \
+opencv-python: 3.4.1.15; \
+pandas: 0.20.3; \
 scikit-image: 0.17.2;
 
 scikit-learn: 0.23.2
