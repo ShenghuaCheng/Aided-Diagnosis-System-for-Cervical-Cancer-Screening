@@ -9,9 +9,9 @@ System Memory: 16G or better
 
 # Environment requirements
 Nvidia GPU corresponding driver;
-CUDA: cuda 9.0;
-cudnn: cudnn 7.0;
-python: 3.6;
+CUDA: cuda 9.0; \
+cudnn: cudnn 7.0; \
+python: 3.6; \
 Tensorflow-gpu: 1.7.0;
 Tensorboard: 1.7.0;
 Keras: 2.1.2;
