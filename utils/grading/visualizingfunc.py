@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: visualizingfunc.py
-@Date: 2019/12/23 
-@Time: 11:27
-@Desc: 存放用于可视化分数分布的方程,包括绘制 直方图 和 分位数占比
-'''
 import os
 import numpy as np
 import matplotlib.pyplot as plt

@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Jul 08 15:53:01 2017
-
-@author: yujingya
-"""
 from __future__ import print_function
 import keras
 from keras.models import Model
@@ -190,30 +185,3 @@ def test_local_module(input_shape=None):
     model = Model(inputs=input, outputs=output)
     return model
 
-
-if __name__ == "__main__":
-    os.environ['CUDA_VISIBLE_DEVICES'] = '2'
-    # img_list = os.listdir(r'H:\AdaptDATA\test\3d\sfy1\ASCUS')
-    # img_batch = []
-    # for img_name in img_list[:7]:
-    #     img = cv2.imread(os.path.join(r'H:\AdaptDATA\test\3d\sfy1\ASCUS', img_name))
-    #     img = cv2.resize(img, (512, 512))
-    #     img = (img/255.-0.5)*2
-    #     img_batch.append(img)
-
-    model1 = Resnet_location_and_predict(input_shape=(512, 512, 3))
-    model1.load_weights(r'H:\weights\200810_Lean2BD\selected_w\L2BD_model1_258_pred.h5', by_name=True)
-    model1.load_weights(r'H:\weights\200810_Lean2BD\selected_w\L2BD_model1_54_local.h5', by_name=True)
-    # model1.predict_on_batch(np.stack(img_batch))
-
-    model1.save(r'H:\weights\200810_Lean2BD\selected_w\L2BD_model1_258_54.h5')
-
-    # import numpy as np
-    # input_shape = (16, 16, 2)
-    # m = test_local_module(input_shape)
-    # t = np.random.random_sample(input_shape)
-    # p = m.predict(np.stack([t]))
-    #
-    # m.save(r'F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\hw_test_local\test_local.h5')
-    # np.save(r'F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\hw_test_local\p.npy', p)
-    # np.save(r'F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\hw_test_local\t.npy', t)

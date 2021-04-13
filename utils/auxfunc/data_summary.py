@@ -1,14 +1,5 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: data_summary.py
-@Date: 2020/1/16 
-@Time: 15:49
-@Desc:
-对数据集进行统计，包括切片数量和标注分布
-单位是文件夹
-'''
+
 import os
 from functools import partial
 import numpy as np

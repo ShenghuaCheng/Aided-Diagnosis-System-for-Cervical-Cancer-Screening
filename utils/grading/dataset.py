@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: dataset.py
-@Date: 2019/11/26 
-@Time: 18:10
-@Desc:
-'''
 import os
 import time
 import numpy as np
@@ -144,37 +136,3 @@ class WSIDataSet:
             labels.append(wsi_item[0])
             tops.append(wsi_item[1].scores[:nb_top])
         return labels, tops
-
-
-if __name__ == '__main__':
-    read_in_dicts = {
-        'our': [
-            # r'Shengfuyou_3th',
-        ],
-        'SZSQ_originaldata': [
-            r'Shengfuyou_3th\positive\Shengfuyou_3th_positive_40X',
-        ],
-        'SrpData': [
-            # r'',
-        ],
-    }
-    slds_root = r'H:\TCTDATA'
-    preds_root = r'H:\fql\rnnResult\rnn1000'
-
-    save_root = r'J:\liusibo\tmp\origin'
-    save_gamma = r'J:\liusibo\tmp\gamma'
-
-    wsi_data = WSIDataSet(slds_root, preds_root, read_in_dicts)
-
-    # wsi_data[0][1].crop_imgs_data(100, 100, 0, 384, slds_root, save_root, save_gamma)
-    wsi_data[0][1].scores[0]
-
-    # sld_dir = r'H:\TCTDATA\SZSQ_originaldata\Shengfuyou_3th\positive\Shengfuyou_3th_positive_40X\1135602 0893036.sdpc'
-    # preds_dir = r'H:\fql\rnnResult\rnn1000\SZSQ_originaldata\Shengfuyou_3th\positive\Shengfuyou_3th_positive_40X\1135602 0893036.txt'
-    # so = SlideObj(sld_dir, preds_dir)
-    # ps = int(256*0.293/so.reader.pixel_size)
-    # img = so.reader.get_tile(np.array(so.anchors[3])-[int(ps/2), int(ps/2)], (ps, ps))
-    # plt.imshow(img)
-    # since = time.time()
-    # so.crop_imgs_data(100, 100, 0, 384, r'H:\TCTDATA', r'J:\liusibo\tmp\origin', r'J:\liusibo\tmp\gamma')
-    # print('consum %.3f' % (time.time()-since))

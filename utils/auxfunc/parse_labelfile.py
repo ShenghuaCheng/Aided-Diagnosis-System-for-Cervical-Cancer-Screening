@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: parse_labelfile.py
-@Date: 2020/1/16 
-@Time: 16:41
-@Desc: 存放解析标签文件的额函数
-'''
 import os
 import numpy as np
 from lxml import etree

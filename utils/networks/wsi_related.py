@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: wsi_related.py
-@Date: 2019/12/24 
-@Time: 8:49
-@Desc: 存放与rnn切片分类相关的权重，包括encoder和simplernn
-'''
 import os
 
 import keras
@@ -56,29 +48,4 @@ def simple_rnn(input_shape, ndims):
     x = SimpleRNN(ndims, activation='relu', name='simple_rnn')(input)
     output = Dense(1, activation='sigmoid', name='output')(x)
     return Model(input, output)
-
-
-if __name__ == '__main__':
-    import os
-    os.environ["CUDA_VISIBLE_DEVICES"]='2'
-    # ===============================================================================
-    # net = resnet_encoder((256, 256, 3))
-    # net = resnet_clf((256, 256, 3))
-    # net.load_weights(r'H:\weights\200810_Lean2BD\selected_w\L2BD_model2_272_pred.h5')
-    # net.save(r'H:\weights\200810_Lean2BD\selected_w\models\L2BD_model2_272.h5')
-    # ===============================================================================
-    rnn_w = r'I:\20200810_Lean2BD\rnn_all\select_w'
-    rnn_m_save = r'I:\20200810_Lean2BD\rnn_all\select_w\models'
-    rnn_dict = {
-        10: ['10_0_0_09-0.86-0.97.h5', '10_12_0_03-0.86-0.94.h5'],
-        20: ['20_0_2_10-0.85-0.95.h5', '20_1_0_10-0.86-0.97.h5'],
-        30: ['30_0_2_03-0.79-0.91.h5', '30_0_13_01-0.78-0.92.h5'],
-    }
-    for nb_rnn in rnn_dict:
-        K.clear_session()
-        rnn = simple_rnn((nb_rnn, 2048), 512)
-        for w in rnn_dict[nb_rnn]:
-            rnn.load_weights(os.path.join(rnn_w, w))
-            rnn.save(os.path.join(rnn_m_save, w))
-            print(os.path.join(rnn_m_save, w))
 

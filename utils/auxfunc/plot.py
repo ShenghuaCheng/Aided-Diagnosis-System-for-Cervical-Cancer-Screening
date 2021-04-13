@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: plot.py
-@Date: 2020/3/3 
-@Time: 15:09
-@Desc: save plot func
-'''
 import os
 import argparse
 import numpy as np

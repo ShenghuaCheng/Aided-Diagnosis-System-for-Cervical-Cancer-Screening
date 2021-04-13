@@ -1,16 +1,6 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: Screening_legacy
-@File: wsi_dataset.py
-@Date: 2019/7/25 
-@Time: 17:03
-@Desc:
-'''
 import os
 import sys
-sys.path.append(r'F:\LiuSibo\Codes\Projects\Screening_legacy\utils')
-sys.path.append(r'F:\LiuSibo\Codes\Projects\Screening_legacy\bin\whole_slide_rank')
 import time
 import json
 
@@ -365,33 +355,3 @@ class WSIDataSet():
     def __len__(self):
         return len(self.all_data)
 
-
-if __name__ == '__main__':
-    # img_srcs = [
-    #     'our',
-    #     'SZSQ_originaldata',
-    # ]
-    # sld_srcs = [
-    #     [
-    #         # 'Shengfuyou_3th', 'Shengfuyou_4th', r'Shengfuyou_5th\svs-20', 'ShengFY-N-L240(origin date)',
-    #         # 'ShengFY-N-L240 (origin date)', 'ShengFY-P-L240 (origin date)', '2018', r'Shengfuyou_5th\svs-10'
-    #     ],
-    #     [
-    #         # 'Shengfuyou_3th', 'Shengfuyou_5th', 'Shengfuyou_7th',
-    #
-    #         r'Tongji_3th\positive\tongji_3th_positive_40x',
-    #         r'Tongji_3th\negative\tongji_3th_negtive_40x',
-    #         r'Tongji_4th\positive',
-    #         r'Tongji_4th\negative', r'Tongji_4th\tj_4th_negative_611',
-    #     ],
-    # ]
-    # prediction_root = r'F:\recom\model1_szsq646_model2_szsq1084'
-    # wsi_data = WSIDataSet(img_srcs, sld_srcs, prediction_root)
-    # wsi_data[1][0].create_img_data(10, save_root=r'F:\LiuSibo\Temp\check_img')
-    # f = wsi_data[0][0].create_feature_data()
-
-    pred_fld = r'F:\WSI_InferenceResult\model1_szsq646_model2_szsq1084\SZSQ_originaldata\Tongji_4th\positive'
-    img_fld = r'H:\TCTDATA\SZSQ_originaldata\Tongji_4th\positive'
-    sld_name = 'tj190401606.sdpc'
-    so = SlideObj(img_fld, pred_fld, sld_name, result_type='json')
-    so.create_img_data(50, save_root=r'F:\LiuSibo\Temp\check_img')

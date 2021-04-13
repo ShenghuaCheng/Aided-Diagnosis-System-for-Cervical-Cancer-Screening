@@ -1,14 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem_beta
-@File: WSIClassify.py
-@Date: 2020/8/28 
-@Time: 11:37
-@Desc:
-This file contain the wsi classification model.
-# TODO More wsi classification methods wanted
-'''
 from keras.layers import Input, Dense, Conv2D, Concatenate
 from keras.layers.recurrent import SimpleRNN, LSTM
 from keras.models import Model

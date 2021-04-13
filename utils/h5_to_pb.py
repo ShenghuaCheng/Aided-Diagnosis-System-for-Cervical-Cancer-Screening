@@ -1,12 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: Screening
-@File: h5_to_pb.py
-@Date: 2019/4/25
-@Time: 10:52
-@Desc:
-'''
 import numpy as np
 
 import tensorflow as tf
