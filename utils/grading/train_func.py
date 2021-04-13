@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: train_func.py
-@Date: 2019/12/24 
-@Time: 14:36
-@Desc: 存放训练时所需要的函数
-'''
 import os
 import random
 import time

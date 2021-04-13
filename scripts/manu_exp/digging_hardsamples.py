@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: digging_hardsamples.py
-@Date: 2020/2/18 
-@Time: 12:10
-@Desc: digging hard samples from existed samples
-'''
 import os
 from functools import partial
 from multiprocessing.dummy import Pool
@@ -17,8 +9,8 @@ from utils.auxfunc.readin_val import readin_val
 if __name__ == '__main__':
     label = 1
     # get data list
-    config_root = r'F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\exp1\config\train'
-    config_file = 'A_train_p'
+    config_root = r'\train'
+    config_file = ''
     post_fix = '.txt'
     with open(os.path.join(config_root, config_file + post_fix), 'r') as f:
         data_list = f.readlines()
@@ -27,7 +19,7 @@ if __name__ == '__main__':
     origin_save = os.path.join(config_root, config_file + '_preds_hard' + post_fix)
     # model setting
     os.environ["CUDA_VISIBLE_DEVICES"] = '4'
-    weight_file = r'F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\exp3\hard_n_Block_300.h5'
+    weight_file = r'.h5'
     model = resnet_clf((256, 256, 3))
     model.load_weights(weight_file)
     # read in test img

@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: func.py
-@Date: 2020/2/18 
-@Time: 12:13
-@Desc: save general funcs for sampling
-'''
 import os
 from lxml import etree
 import numpy as np

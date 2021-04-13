@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: hist_txt_process.py
-@Date: 2020/3/13
-@Time: 13:18
-@Desc: 存放对于训练过程中hist.txt文件的处理
-'''
 import os
 import collections
 import numpy as np
@@ -38,8 +30,8 @@ def parse_hist_txt(file_dir, matrix=None):
 
 
 if __name__ == '__main__':
-    file_dir = r"F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\model1\weights\logs\hist.txt"
-    save_root = r'F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\model1\weights'
+    file_dir = r"hist.txt"
+    save_root = r'\weights'
     save_val = os.path.join(save_root, 'val_record.xlsx')
     save_test = os.path.join(save_root, 'test_record.xlsx')
     hist_dict, block, acc_record = parse_hist_txt(file_dir)

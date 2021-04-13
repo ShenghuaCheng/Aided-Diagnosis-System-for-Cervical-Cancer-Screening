@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: preprocess.py
-@Date: 2019/12/24 
-@Time: 9:12
-@Desc:
-'''
 import random
 import cv2
 from skimage import exposure

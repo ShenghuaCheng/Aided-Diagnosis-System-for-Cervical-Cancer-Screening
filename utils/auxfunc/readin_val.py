@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: readin_val.py
-@Date: 2020/1/14 
-@Time: 15:30
-@Desc:简单的读取验证数据并前处理
-'''
 import cv2
 import numpy as np
 from skimage import exposure

@@ -1,13 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: auxfunc.py
-@Date: 2019/11/28 
-@Time: 15:12
-@Desc:
-该文件存储用于前向推理的辅助函数
-'''
 import configparser
 import numpy as np
 import scipy.ndimage as ndi

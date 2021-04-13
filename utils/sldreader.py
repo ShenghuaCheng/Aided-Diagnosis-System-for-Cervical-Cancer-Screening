@@ -1,11 +1,5 @@
 # -*- coding:utf-8 -*-
 '''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: sldreader.py
-@Date: 2019/11/26 
-@Time: 16:45
-@Desc:
 Slide reader class for mrxs svs sdpc srp format.
 Default pixel size lists below:
 ------------------

@@ -1,12 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: aux_func.py
-@Date: 2020/12/23 
-@Time: 15:11
-@Desc:  存放一些在文章整理过程常用到的函数
-'''
 import os
 from functools import partial
 from multiprocessing.dummy import Pool
@@ -35,27 +27,14 @@ GROUPS = ["A", "B", "C", "D", "E", "F",
 SLIDE_TOP = {
     'E': {
         'P': [
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\Shengfuyou_5th\positive\Shengfuyou_5th_positive_40X',
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\Shengfuyou_7th\positive\Shengfuyou_7th_positive_40x',
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\Shengfuyou_8th\positive\pos_ascus',
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\Shengfuyou_8th\positive\pos_hsil',
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\Shengfuyou_8th\positive\pos_lsil',
         ],
         'N': [
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\Shengfuyou_6th\Shengfuyou_6th_negtive_40X',
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\Shengfuyou_7th\negative\Shengfuyou_7th_negative_40x',
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\Shengfuyou_8th\negative',
         ]
     },
     'F': {
         'P': [
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\XiaoYuwei_1th\positive',
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\XiaoYuWei_2th\positive',
-
         ],
         'N': [
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\XiaoYuwei_1th\negative',
-            r'H:\liusibo\manuscripts_top_tiles_for_rnn\origin\SZSQ\XiaoYuWei_2th\negative',
         ]
     }
 }
@@ -111,28 +90,28 @@ def create_encoder(m_w, in_shape=(256, 256, 3)):
 def create_encoders(m_name):
     if m_name == 'HR_model':
         in_shape = (256,256,3)
-        m_w = r"F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\select_w\m2_Block_102.h5"  # model2
+        m_w = r""  # model2
     elif m_name == 'LR_model':
         in_shape = (512,512,3)
-        m_w = r"F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\select_w\m1_pred_Block_333.h5"  # model1
+        m_w = r""  # model1
     elif m_name == 'Baseline':
         in_shape = (256,256,3)
-        m_w = r"F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\exp2\new_E\AB_Block_339.h5"  # model2
+        m_w = r""  # model2
     elif m_name == 'Mined':
         in_shape = (256,256,3)
-        m_w = r"F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\model2\exp3_re_270.h5"  # model2
+        m_w = r""  # model2
     elif m_name == 'Enhanced':
         in_shape = (256,256,3)
-        m_w = r"F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\model2\exp1_enhance_360.h5"  # model2
+        m_w = r""  # model2
     elif m_name == 'Origin':
         in_shape = (256,256,3)
-        m_w = r"F:\LiuSibo\Codes\Projects\AidedDiagnosisSystem\doc\manu_yjy\model2\exp1_origin_130.h5"  # model2
+        m_w = r""  # model2
     else: raise ValueError('no keyword {}'.format(m_name))
     print('Create {}:\nInput: {}\nWeights:{}'.format(m_name, in_shape, m_w))
     return create_encoder(m_w, in_shape), in_shape
 
 
-def parse_group(group, TEST_DATASET_XLSX=r'I:\20201221_Manu_Fig3\all_test_data.xlsx'):
+def parse_group(group, TEST_DATASET_XLSX=r'.xlsx'):
     # 获取group对应的样本列表文件列表
     sheet = pd.read_excel(TEST_DATASET_XLSX, sheetname=group)
     file_list = sheet['txt_name'].tolist()

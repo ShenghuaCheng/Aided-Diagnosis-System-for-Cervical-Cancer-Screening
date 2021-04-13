@@ -1,12 +1,5 @@
 # -*- coding:utf-8 -*-
-'''
-@Author: LiuSibo
-@Project: AidedDiagnosisSystem
-@File: tsne_visual.py
-@Date: 2020/1/14 
-@Time: 15:28
-@Desc:
-'''
+
 import os
 import time
 import random
@@ -21,27 +14,16 @@ from utils.auxfunc.readin_val import readin_val
 if __name__ == '__main__':
     os.environ["CUDA_VISIBLE_DEVICES"] = '7'
     # create encoder model
-    encoder_weight = r'F:\LiuSibo\Exps\200108_paper\weights\AB_enhance\model2_pred\ckpt_complex\Block_68.h5'
-    # encoder_weight = r'F:\LiuSibo\Exps\200108_paper\weights\AB_enhance\model2_pred\ckpt_simple\Block_240.h5'
+    encoder_weight = r'model2.h5'
     encoder = resnet_encoder((256, 256, 3))
     encoder.load_weights(encoder_weight)
     # read in imgs
     nb_readin = 1000
     labels = [1] * nb_readin + [0] * nb_readin
 
-    # n_fld = r'H:\AdaptDATA\test\3d\sfy1\nplus'
-    # p_fld = r'H:\AdaptDATA\test\3d\sfy1\ASCUS'
-    n_list = random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy1\n\n_0', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy1\n\n_0') if '.tif' in d], 50) + \
-             random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy1\n\n_5', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy1\n\n_5') if '.tif' in d], 450) + \
-             random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy2\n\n_0', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy2\n\n_0') if '.tif' in d], 50) + \
-             random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy2\n\n_5', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy2\n\n_5') if '.tif' in d], 450)
+    n_list = random.sample([os.path.join(r'', d) for d in os.listdir(r'') if '.tif' in d], 50)
 
-    p_list = random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy1\ASCUS', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy1\ASCUS') if '.tif' in d], 92) + \
-             random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy1\HSIL', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy1\HSIL') if '.tif' in d], 319) + \
-             random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy1\LSIL', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy1\LSIL') if '.tif' in d], 89) + \
-             random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy2\ASCUS', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy2\ASCUS') if '.tif' in d], 260) + \
-             random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy2\HSIL', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy2\HSIL') if '.tif' in d], 206) + \
-             random.sample([os.path.join(r'H:\AdaptDATA\test\3d\sfy2\LSIL', d) for d in os.listdir(r'H:\AdaptDATA\test\3d\sfy2\LSIL') if '.tif' in d], 34)
+    p_list = random.sample([os.path.join(r'', d) for d in os.listdir(r'') if '.tif' in d], 92)
 
     readin_func = partial(readin_val, re_size=(1536, 1536), crop_size=(256, 256))
     since = time.time()
