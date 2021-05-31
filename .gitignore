@@ -1,2 +1,5 @@
 .spyproject
 .vscode
+data_for_test
+*.dll
+*.so
