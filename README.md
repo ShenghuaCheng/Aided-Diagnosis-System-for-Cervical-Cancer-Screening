@@ -36,7 +36,7 @@ WSI resolution: 20× or 40× （0.1 – 0.6 um/pixel, 0.1 – 0.4 um/pixel is be
 
 ---
 # C++ software 
-[The C++ software](./SoftwareManual/SoftwareManual.md) with test WSIs is available at [Baidu Cloud](https://pan.baidu.com/s/1VRlA4njDCqmit6bwM1KAXA).
+[The C++ software](./SoftwareManual/SoftwareManual.md) with test WSIs is available at [Baidu Cloud](https://pan.baidu.com/s/1UmQzASwvlpKLO7hbwaDc_A).
 Correspongding [user manual pdf](./SoftwareManual/User%20Manual%20of%20C++%20Software.pdf) is uploaded.\
 Codes can be provided by email xlliu@mail.hust.edu.cn or chengshen@hust.edu.cn.
 
