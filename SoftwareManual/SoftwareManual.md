@@ -9,7 +9,7 @@
 
 ---
 ## Supported WSI formats
-The software supports the WSI formats supported by the opensource OpenSlide library, including `x.svs`, `x.mrxs`, `x.tif`, etc.\
+The software supports the WSI formats supported by the opensource `OpenSlide` library, including `x.svs`, `x.mrxs`, `x.tif`, etc.\
 WSI resolution: 20× or 40× (0.1 – 0.6 um/pixel, 0.1 – 0.4 um/pixel is better)
 
 ---
@@ -38,24 +38,24 @@ For each slide, the results include the cropped image patches of recommended top
 In `xx.txt` below, the positive probability, (x, y) position of recommended cells are provided. Notably, the (x, y) position is relative to the rectangle bounding the non-empty region of the slide, if available by querying slide properties by `OpenSlide`.\
 ![image](./images/6.png)
 
- ---
+---
 ## Example
-**Slide 1:** 1110441 0893050.mrxs\
-Predicted score of slide：1.00\
+**Slide 1:** 1.mrxs\
+Predicted score of slide：1.0\
 Recommended lesion cells: the recommended lesion cells refer to the cells in center region of the patch (about 243 um2)\
 ![image](./images/7.png)
 
-**Slide2**: 1179536.svs\
-Predicted score of slide：1.00\
+**Slide2**: 7.svs\
+Predicted score of slide：0.995\
 Recommended lesion cells:\
 ![image](./images/8.png)
 
-**Slide3:** 0067309 1009017.mrxs\
-Predicted score of slide：0.00\
+**Slide3:** 13.srp\
+Predicted score of slide：0.306\
 Recommended lesion cells:\
 ![image](./images/9.png)
 
-**Slide4:** 1159929.svs\
-Predicted score of slide：0.009\
+**Slide4:** 19.sdpc\
+Predicted score of slide：1.0\
 Recommended lesion cells:\
 ![image](./images/10.png)
