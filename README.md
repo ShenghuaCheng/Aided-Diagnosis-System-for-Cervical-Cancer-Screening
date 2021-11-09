@@ -31,7 +31,7 @@ WSI resolution: 20× or 40× （0.1 – 0.6 um/pixel, 0.1 – 0.4 um/pixel is be
 ### Model training and inferring
 - `train_*.py` for `model1`, `model2`, `rnn` training.
 - `eval_*.py` for `model1`, `model2`, `rnn` evaluation.
-- `predict.py` for `model1` & `model2` joint inference, rnn scores can be calculated by `eval_rnn.py` with the predicted images, final out put can be calculated by `scripts/rawRNNtopTOFinalScore.py` with rnn scores of single slide.
+- `predict.py` for `model1` & `model2` joint inference, rnn scores can be calculated by `eval_rnn.py` with the predicted images, final output can be calculated by `scripts/rawRNNtopTOFinalScore.py` with rnn scores of single slide.
 ### Utils classes and functions
 
 ---

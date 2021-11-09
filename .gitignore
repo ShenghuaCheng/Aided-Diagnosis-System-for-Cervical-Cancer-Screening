@@ -1,5 +1,9 @@
+# IDE
 .spyproject
 .vscode
+.idea
+
+# custom files
 data_for_test
 *.dll
 *.so
