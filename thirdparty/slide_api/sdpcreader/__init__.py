@@ -1,9 +1,8 @@
-# -*- coding:utf-8 -*-
-'''
-@Author: LiamTTT
-@Project: AidedDiagnosisSystem
-@File: __init__.py.py
-@Date: 2019/11/26 
-@Time: 16:34
-@Desc:
-'''
+# -*- coding: utf-8 -*-
+"""
+This file is a part of project "Aided-Diagnosis-System-for-Cervical-Cancer-Screening".
+See https://github.com/ShenghuaCheng/Aided-Diagnosis-System-for-Cervical-Cancer-Screening for more information.
+
+File name: __init__.py
+Description: API for *.sdpc
+"""

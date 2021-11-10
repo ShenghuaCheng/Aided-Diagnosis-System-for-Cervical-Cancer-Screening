@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+This file is a part of project "Aided-Diagnosis-System-for-Cervical-Cancer-Screening".
+See https://github.com/ShenghuaCheng/Aided-Diagnosis-System-for-Cervical-Cancer-Screening for more information.
+
+File name: pysrp.py
+Description: API for *.srp.
+"""
+
 import os
 import ctypes
 import numpy as np
