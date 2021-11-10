@@ -6,9 +6,11 @@ See https://github.com/ShenghuaCheng/Aided-Diagnosis-System-for-Cervical-Cancer-
 File name: slide_reader.py
 Description: Integrated API for reading WSI.
 """
+
 import os
 import openslide
 import numpy as np
+from loguru import logger
 from collections import Iterable
 from openslide import OpenSlide
 from thirdparty.slide_api import Sdpc, Srp
@@ -34,12 +36,10 @@ class SlideReader:
         return self._path
 
     def open(self, path):
-        if path == self._path:
+        if path == self._path or path is None:
             return
         else:
-            if self._path is not None:
-                self.handle.close()
-                del self.handle
+            self.close()
         try:
             self.suffix = os.path.splitext(path)[-1]
             if self.suffix == ".sdpc":
@@ -54,20 +54,15 @@ class SlideReader:
                 raise ValueError("File type: {} is not supported.".format(self.suffix))
             self._path = path
         except Exception as e:
-            print(e)
-            del self.handle
-
-            self.handle = None
-            self._path = None
+            logger.error(f'{e}\nNote: some system requires absolute path for wsi image.')
+            self.close()
 
     def close(self):
+        self._path = None
         if self.handle is None:
             return
         self.handle.close()
-        del self.handle
-
         self.handle = None
-        self._path = None
 
     def get_attrs(self):
         return get_attrs(self)
@@ -113,19 +108,22 @@ class SlideReader:
             tile = np.array(self.handle.read_region(location, 0, size).convert('RGB'))
         return tile
 
+    def __del__(self):
+        self.close()
+
 
 # == Aux Functions ==
 def get_attrs(wsi_handle):
     attrs = {}
     try:
         if wsi_handle.suffix in [".sdpc", ".srp"]:
-            attrs = wsi_handle.getAttrs()
+            attrs = wsi_handle.handle.getAttrs()
             attrs["bound_init"] = (0, 0)
             attrs["level_ratio"] = 2
         elif wsi_handle.suffix in ['.svs', '.mrxs']:
-            attrs = get_openslide_attrs(wsi_handle)
+            attrs = get_openslide_attrs(wsi_handle.handle)
     except Exception as e:
-        print(e)
+        logger.error(e)
 
     return attrs
 
