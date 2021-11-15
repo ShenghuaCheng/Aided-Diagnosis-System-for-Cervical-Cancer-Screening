@@ -25,9 +25,9 @@ def verify_image(image_path, logger=None):
         Check whether the image is corrupted.
     """
     suffix = image_path.split('.')[-1]
-    im = Image.open(image_path)
     # file error
     try:
+        im = Image.open(image_path)
         im.verify()  # PIL verify
     except Exception as exc:
         if logger is not None:
@@ -46,14 +46,6 @@ def verify_image(image_path, logger=None):
         # tail AE 42 60 82
         f.seek(-4, 2)
         res = f.read() == b'\xae\x42\x60\x82'
-    elif suffix == "tif":
-        # head 49 49 2A 00
-        f.seek(4, 0)
-        res = f.read() == b'\x49\x49\x2a\x00'
-    elif suffix == "bmp":
-        # head 42 4D
-        f.seek(2, 0)
-        res = f.read() == b'\x42\x4d'
     else:
         # TODO: how to check content of image in other format.
         pass
