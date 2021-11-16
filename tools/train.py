@@ -8,6 +8,7 @@ Description: train model
 """
 
 import argparse
+import random
 
 from core.config import load_config
 from core.drive import Trainer
@@ -22,6 +23,8 @@ if __name__ == '__main__':
     parser.add_argument("-e", "--start_epoch", type=int, default=None, help="resume training start epoch")
     args = parser.parse_args()
     config = load_config(args.config_file, args.config_name)
+
+    random.seed(42)  # fix global seed
 
     trainer = Trainer(args, config)
     trainer.train()

@@ -9,3 +9,4 @@ __pycache__
 *.so
 datasets/*
 !datasets/README.md
+tmp
