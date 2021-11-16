@@ -136,6 +136,8 @@ class Augmentations:
                 xy = np.random.random(2)*(np.array(img.shape[:2]) - list(size))
                 bbox = tuple(xy.astype(np.int).tolist() + list(size))
                 img = SpatialTrans.crop(img, bbox)
+            else:
+                img = SpatialTrans.center_crop(img, size)
             return img
         return random_crop
     

@@ -4,7 +4,8 @@ This file is a part of project "Aided-Diagnosis-System-for-Cervical-Cancer-Scree
 See https://github.com/ShenghuaCheng/Aided-Diagnosis-System-for-Cervical-Cancer-Screening for more information.
 
 File name: __init__.py
-Description: module for creating dataset and preprocess data.
+Description: definition of different datasets.
 """
-from .augmentations import *
-from .preprocess import *
+
+from .resnet_dataset import *
+from .resnet_dataloader import *

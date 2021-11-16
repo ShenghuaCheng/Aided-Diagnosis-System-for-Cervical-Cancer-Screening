@@ -4,7 +4,7 @@ This file is a part of project "Aided-Diagnosis-System-for-Cervical-Cancer-Scree
 See https://github.com/ShenghuaCheng/Aided-Diagnosis-System-for-Cervical-Cancer-Screening for more information.
 
 File name: resnet_dataset
-Description: 
+Description: dataset for resnet related tasks.
 """
 
 import os
@@ -14,8 +14,6 @@ import numpy as np
 import pandas as pd
 from loguru import logger
 from xlrd import XLRDError
-
-random.seed(42)
 
 __all__ = [
     "ResnetDataset"
@@ -203,10 +201,3 @@ def _match_img_mask(img_pool, mask_pool):
             mask_names.remove(msk_n)
             mask_ls.remove(msk_p)
     return mat_dict
-
-
-if __name__ == '__main__':
-    dataset_config = 'D:\\liusibo\\Codes\\PythonProjects\\Aided-Diagnosis-System-for-Cervical-Cancer-Screening\\datasets\\data_for_test\\configs\\model1_cls_sample.xlsx'
-    rn_ds = ResnetDataset(dataset_config, 0.486, (512, 512), True)
-    labels, images, mpp, masks = rn_ds.sampling('train')
-    pass
