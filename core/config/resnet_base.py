@@ -36,7 +36,7 @@ class ResnetConfig(BaseConfig):
         self.nb_workers = 1
         # --------------  dataset config --------------------- #
         from core.data.datasets import ResnetDataset
-        self.dataset_config = r"D:\liusibo\Codes\PythonProjects\Aided-Diagnosis-System-for-Cervical-Cancer-Screening\datasets\data_for_test\configs\model1_cls_sample.xlsx"
+        self.dataset_config = "./datasets/model1/model1_cls_sample.xlsx"
         self.with_mask = False
         # create dataset
         self.dataset = ResnetDataset(self.dataset_config, self.with_mask)
@@ -53,7 +53,6 @@ class ResnetConfig(BaseConfig):
         self.h_flip = 0.5
         self.v_flip = 0.5
         # --------------  training config --------------------- #
-        self.warmup_epochs = 5
         self.max_epoch = 300
         self.init_lr = 0.01
         self.scheduler = None
