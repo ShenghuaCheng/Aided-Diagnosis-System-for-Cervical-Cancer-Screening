@@ -133,6 +133,7 @@ class Augmentations:
     def RandomCrop(p: float=1., size: tuple=(512, 512)):
         def random_crop(img: np.ndarray):
             if random.random() < p:
+                # for a large FOV, control the translate range
                 xy = np.random.random(2)*(np.array(img.shape[:2]) - list(size))
                 bbox = tuple(xy.astype(np.int).tolist() + list(size))
                 img = SpatialTrans.crop(img, bbox)

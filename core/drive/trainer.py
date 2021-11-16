@@ -51,11 +51,13 @@ class Trainer:
 
         # compile model
         model = self.config.create_model(weight=self.args.weights)
-        logger.info(f"Model summary:\n{model.summary()}")
+        model_sum = []
+        model.summary(print_fn=lambda l: model_sum.append(l))
+        logger.info("Model summary:\n {}".format("\n".join(model_sum)))
 
-        optimizer = self.config.optimizer
-        loss = self.config.loss
-        metrics = self.config.metrics
+        optimizer = self.config.get_optimizer()
+        loss = self.config.get_loss()
+        metrics = self.config.get_metrics()
         model.compile(optimizer, loss, metrics)
 
         lr_scheduler = self.config.get_lr_scheduler()
@@ -100,7 +102,7 @@ class Trainer:
             steps_per_epoch=None,
             epochs=self.max_epoch,
             verbose=1,
-            callbackes=self.callbacks,
+            callbacks=self.callbacks,
             validation_data=self.val_loader,
             validation_steps=None,
             class_weight=None,

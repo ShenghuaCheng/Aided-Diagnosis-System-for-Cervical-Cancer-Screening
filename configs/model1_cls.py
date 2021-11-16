@@ -7,16 +7,18 @@ File name: model1_cls.py
 Description: example for model1_cls
 """
 
-from core.config.resnet_base import ResnetConfig
+import os
+from core.config.resnet_base import Config as MyConfig
 
 
-class Model1Cls(ResnetConfig):
+class Config(MyConfig):
     def __init__(self):
-        super(Model1Cls, self).__init__()
+        super(Config, self).__init__()
         # --------------  model config --------------------- #
         # --------------  data loader config --------------------- #
-        self.use_multiprocessing = True
-        self.nb_workers = 4
+        self.use_multiprocessing = False
+        self.nb_workers = 1
         # --------------  dataset config --------------------- #
         # --------------  transform config --------------------- #
         # --------------  training config --------------------- #
+        self.config_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]

@@ -24,18 +24,15 @@ class BaseConfig(metaclass=ABCMeta):
         raise NotImplementedError
 
     @abstractmethod
-    @property
-    def optimizer(self):
+    def get_optimizer(self):
         raise NotImplementedError
 
     @abstractmethod
-    @property
-    def loss(self):
+    def get_loss(self):
         raise NotImplementedError
 
     @abstractmethod
-    @property
-    def metrics(self):
+    def get_metrics(self):
         raise NotImplementedError
 
     @abstractmethod

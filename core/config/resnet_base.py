@@ -15,18 +15,19 @@ from keras.utils import multi_gpu_model
 import tensorflow as tf
 from tensorflow.python.client import device_lib
 
+import core
 from core.models import model1_clf
 from core.config import BaseConfig
 from core.utils import Schedulers, load_weights
 
-GPU_DEVICES = [item.name for item in device_lib.list_local_devices() if item.deice_type == 'GPU']
+GPU_DEVICES = [item.name for item in device_lib.list_local_devices() if item.device_type == 'GPU']
 
 
-class ResnetConfig(BaseConfig):
+class Config(BaseConfig):
     def __init__(self):
         super().__init__()
         # --------------  model config --------------------- #
-        self.model_func = model1_clf
+        self._model_func = model1_clf
         self.frozen_layers = 37
         self.input_size = (512, 512)
         self.input_mpp = 0.486
@@ -36,10 +37,11 @@ class ResnetConfig(BaseConfig):
         self.nb_workers = 1
         # --------------  dataset config --------------------- #
         from core.data.datasets import ResnetDataset
-        self.dataset_config = "./datasets/model1/model1_cls_sample.xlsx"
+        self.dataset_config = os.path.join(os.path.dirname(os.path.dirname(core.__file__)),
+                                           "datasets/model1/model1_cls_sample.xlsx")
         self.with_mask = False
         # create dataset
-        self.dataset = ResnetDataset(self.dataset_config, self.with_mask)
+        self._dataset = ResnetDataset(self.dataset_config, self.with_mask)
         # --------------  transform config --------------------- #
         self.norm_range = [-1., 1.]
         self.crop = 0.5
@@ -63,15 +65,15 @@ class ResnetConfig(BaseConfig):
         nb_gpu = len(GPU_DEVICES)
         if nb_gpu > 1:
             with tf.device('/cpu:0'):
-                model = self.model_func(self.frozen_layers)
+                model = self._model_func(self.frozen_layers)
                 model = load_weights(model, weight)
             self.model = multi_gpu_model(model, gpus=nb_gpu)
         else:
-            model = self.model_func(self.frozen_layers)
+            model = self._model_func(self.frozen_layers)
             self.model = load_weights(model, weight)
         return self.model
 
-    def optimizer(self):
+    def get_optimizer(self):
         if self.optimizer is None:
             logger.warning("use default adam optimizer.")
             optimizer = optimizers.Adam
@@ -83,10 +85,10 @@ class ResnetConfig(BaseConfig):
             raise ValueError(f"no {self.optimizer} optimizer")
         return optimizer(lr=self.init_lr)
 
-    def loss(self):
+    def get_loss(self):
         return ["binary_crossentropy"]
 
-    def metrics(self):
+    def get_metrics(self):
         return ["binary_accuracy"]
 
     def get_lr_scheduler(self):
@@ -105,7 +107,7 @@ class ResnetConfig(BaseConfig):
         return []
 
     def get_train_loader(self):
-        df_cfg = self.dataset.df_config["train"]
+        df_cfg = self._dataset.df_config["train"]
         if df_cfg is None:
             raise ValueError(f"train dataset is None, Check {self.dataset_config}.")
         from core.data.datasets import ResnetDataloader
@@ -126,15 +128,16 @@ class ResnetConfig(BaseConfig):
             self.norm_range
         )
         train_loader = ResnetDataloader(
-            self.dataset,
+            self._dataset,
             "train",
             self.input_size,
             self.input_mpp,
             preprocess
         )
+        return train_loader
 
     def get_validate_loader(self):
-        df_cfg = self.dataset.df_config["val"]
+        df_cfg = self._dataset.df_config["val"]
         if df_cfg is None:
             raise ValueError(f"val dataset is None, Check {self.dataset_config}.")
         from core.data.datasets import ResnetDataloader
@@ -146,15 +149,16 @@ class ResnetConfig(BaseConfig):
             self.norm_range
         )
         val_loader = ResnetDataloader(
-            self.dataset,
-            "train",
+            self._dataset,
+            "val",
             self.input_size,
             self.input_mpp,
             preprocess
         )
+        return val_loader
 
     def get_test_loader(self):
-        df_cfg = self.dataset.df_config["test"]
+        df_cfg = self._dataset.df_config["test"]
         if df_cfg is None:
             raise ValueError(f"test dataset is None, Check {self.dataset_config}.")
         from core.data.datasets import ResnetDataloader
@@ -166,9 +170,10 @@ class ResnetConfig(BaseConfig):
             self.norm_range
         )
         test_loader = ResnetDataloader(
-            self.dataset,
-            "train",
+            self._dataset,
+            "test",
             self.input_size,
             self.input_mpp,
             preprocess
         )
+        return test_loader

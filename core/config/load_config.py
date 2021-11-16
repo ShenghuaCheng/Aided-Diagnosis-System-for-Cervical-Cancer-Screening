@@ -25,11 +25,11 @@ DEFAULT_CONFIG = {
 def load_config_file(cfg_file):
     try:
         sys.path.append(os.path.dirname(cfg_file))
-        config = importlib.import_module(os.path.basename(cfg_file).split(".")[0])
-        config = config.Exp()
+        cur_cfg = importlib.import_module(os.path.basename(cfg_file).split(".")[0])
+        cfg = cur_cfg.Config()
     except Exception:
-        raise ImportError("{} doesn't contains class named 'Exp'".format(cfg_file))
-    return config
+        raise ImportError("{} doesn't contains class named 'Config'".format(cfg_file))
+    return cfg
 
 
 def load_config_name(cfg_name):
