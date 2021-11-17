@@ -23,7 +23,7 @@ def load_weights(model, weights=None):
     if weights is None:
         return model
     elif isinstance(weights, str):
-        model.load_weight(weights, by_name=True)
+        model.load_weights(weights, by_name=True)
         logger.info(f"load {weights}")
     elif isinstance(weights, Iterable):
         for w in weights:

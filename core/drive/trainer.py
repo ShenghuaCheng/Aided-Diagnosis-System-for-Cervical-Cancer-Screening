@@ -95,7 +95,7 @@ class Trainer:
         ]
 
         if self.ini_epoch != 0:
-            logger.info(f"resume train from {self.ini_epoch - 1}")
+            logger.info(f"resume train from {self.ini_epoch}")
 
         # dataset init
         self.train_loader = self.config.get_train_loader()

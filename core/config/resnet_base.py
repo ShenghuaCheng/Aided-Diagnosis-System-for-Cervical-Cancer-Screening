@@ -37,12 +37,11 @@ class Config(BaseConfig):
         self.use_multiprocessing = False
         self.nb_workers = 1
         # --------------  dataset config --------------------- #
-        from core.data.datasets import ResnetDataset
         self.dataset_config = os.path.join(os.path.dirname(os.path.dirname(core.__file__)),
                                            "datasets/model1/model1_cls_sample.xlsx")
         self.with_mask = False
         # create dataset
-        self._dataset = ResnetDataset(self.dataset_config, self.with_mask)
+        self._dataset = None
         # --------------  transform config --------------------- #
         self.norm_range = [-1., 1.]
         self.crop = 0.5
