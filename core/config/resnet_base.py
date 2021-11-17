@@ -44,7 +44,7 @@ class Config(BaseConfig):
         self._dataset = None
         # --------------  transform config --------------------- #
         self.norm_range = [-1., 1.]
-        self.crop = 0.5
+        self.translate = 0.5
         self.gamma = 0.
         self.scale = 0.
         self.sharp = 0.5
@@ -115,7 +115,7 @@ class Config(BaseConfig):
         # init preprocessor
         preprocess = Preprocess(
             self.input_size,
-            self.crop,
+            self.translate,
             self.gamma,
             self.scale,
             self.sharp,

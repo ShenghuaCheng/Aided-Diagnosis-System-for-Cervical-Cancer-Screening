@@ -91,4 +91,4 @@ class ResnetDataloader(Sequence):
     def on_epoch_end(self):
         print()
         self._sampling()
-        logger.info("Resampling from image pool ...")
+        logger.info(f"Resampling {self.name} from image pool ...")

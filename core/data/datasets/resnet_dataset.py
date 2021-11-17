@@ -114,9 +114,6 @@ class ResnetDataset:
                         pl_msk.append(msk_p)
                 pl_smp = pl_tmp
                 nb_smp = min(len(pl_smp), nb_smp)
-                # refresh df config according to mask
-                self.df_config[name]["subset_sample"] = nb_smp
-                self.df_config[name]["subset_total"] = len(pl_smp)
             # sampling
             if nb_smp:
                 sample_idx = random.sample(list(range(len(pl_smp))), nb_smp)
@@ -126,8 +123,8 @@ class ResnetDataset:
                 mpp_ls += [mpp] * nb_smp
                 msk_ls += np.array(pl_msk)[sample_idx].tolist()
             else:
-                logger.warning("no mask found in Group: {} Subset: {}, "
-                               "check the mask index file.".format(config["group_name"][i], config["subset_name"][i]))
+                logger.warning("no mask found in {} Group: {} Subset: {}, check "
+                               "the mask index file.".format(name, config["group_name"][i], config["subset_name"][i]))
         return label, img_ls, mpp_ls, msk_ls
 
     def write_config(self, path):
@@ -157,7 +154,8 @@ def process_df_config(df_config: pd.DataFrame):
         index_files = [fp.strip() for fp in row["index_files"].split(',') if fp.strip() != ""]
         subset_total = 0
         for fp in index_files:
-            subset_total += len(open(fp, 'r').readlines())
+            with open(fp, 'r') as f:
+                subset_total += len(f.readlines())
         subset_sample = max(1, int(float(row["group_nb"]) * float(row["subset_ratio"])))  # at least 1 sample
         df_config.at[r_idx, "subset_total"] = subset_total
         df_config.at[r_idx, "subset_sample"] = min(subset_sample, subset_total)

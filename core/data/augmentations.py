@@ -134,8 +134,13 @@ class Augmentations:
         def random_crop(img: np.ndarray):
             if random.random() < p:
                 # for a large FOV, control the translate range
-                if img.shape[0] > size[1] or img.shape[1] > size[0]:
-                    img = SpatialTrans.center_crop(img, size)
+                new_shape = list(img.shape[:2][::-1])
+                if img.shape[0] > size[1] * 1.5:
+                    new_shape[1] = int(size[1] * 1.5)
+                if img.shape[1] > size[0] * 1.5:
+                    new_shape[0] = int(size[0] * 1.5)
+                img = SpatialTrans.center_crop(img.copy(), tuple(new_shape))
+                # do translate
                 xy = np.random.random(2)*(np.array(img.shape[:2]) - list(size))
                 bbox = tuple(xy.astype(np.int).tolist() + list(size))
                 img = SpatialTrans.crop(img, bbox)
