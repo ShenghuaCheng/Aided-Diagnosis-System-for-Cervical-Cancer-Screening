@@ -33,6 +33,7 @@ class Config(BaseConfig):
         self.input_mpp = 0.486
         # --------------  data loader config --------------------- #
         self.max_queue_size = 10
+        # FIXME 20211117: can not apply multiprocessing
         self.use_multiprocessing = False
         self.nb_workers = 1
         # --------------  dataset config --------------------- #

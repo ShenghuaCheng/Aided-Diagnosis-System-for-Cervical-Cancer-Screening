@@ -134,6 +134,8 @@ class Augmentations:
         def random_crop(img: np.ndarray):
             if random.random() < p:
                 # for a large FOV, control the translate range
+                if img.shape[0] > size[1] or img.shape[1] > size[0]:
+                    img = SpatialTrans.center_crop(img, size)
                 xy = np.random.random(2)*(np.array(img.shape[:2]) - list(size))
                 bbox = tuple(xy.astype(np.int).tolist() + list(size))
                 img = SpatialTrans.crop(img, bbox)
@@ -238,6 +240,7 @@ class SpatialTrans:
         :param angle: rotate angle
         :return: a ndarray has same size as input, padding zero or cut out region out of picture
         """
+        assert img.shape[0] == img.shape[1], "Square image needed."
         mat = cv2.getRotationMatrix2D(tuple(np.array(img.shape[:2])//2), angle, scale=1)
         return cv2.warpAffine(img.copy(), mat, img.shape[:2])
 
@@ -258,7 +261,7 @@ class SpatialTrans:
         :param fix_size: return the center area of scaled image, size of area is same as the image before scaling
         :return:  a scaled image
         """
-        shape = img.shape[:2]
+        shape = img.shape[:2][::-1]
         img = cv2.resize(img.copy(), None, fx=ratio, fy=ratio)
         if fix_size:
             img = SpatialTrans.center_crop(img, shape)
@@ -272,18 +275,18 @@ class SpatialTrans:
         :return: cropped image,padding with zeros
         """
         ch = [] if len(img.shape) == 2 else [img.shape[-1]]
-        template = np.zeros(list(bbox[-2:])+ch)
+        template = np.zeros(list(bbox[-2:])[::-1]+ch)
 
-        if (bbox[0] >= img.shape[0] or bbox[1] >= img.shape[1]) or (bbox[0]+bbox[2] <= 0 or bbox[1]+bbox[3] <= 0):
+        if (bbox[1] >= img.shape[0] or bbox[1] >= img.shape[1]) or (bbox[0]+bbox[2] <= 0 or bbox[1]+bbox[3] <= 0):
             logger.warning("Crop area contains nothing, return a zeros array {}".format(template.shape))
             return template
         
         foreground = img[
-            np.maximum(bbox[1], 0): np.minimum(bbox[1]+bbox[3], img.shape[1]),
-            np.maximum(bbox[0], 0): np.minimum(bbox[0]+bbox[2], img.shape[0]), :]
+            np.maximum(bbox[1], 0): np.minimum(bbox[1]+bbox[3], img.shape[0]),
+            np.maximum(bbox[0], 0): np.minimum(bbox[0]+bbox[2], img.shape[1]), :]
 
         template[
-            np.maximum(-bbox[1], 0): np.minimum(-bbox[1]+img.shape[1], bbox[3]),
+            np.maximum(-bbox[1], 0): np.minimum(-bbox[1]+img.shape[0], bbox[3]),
             np.maximum(-bbox[0], 0): np.minimum(-bbox[0]+img.shape[1], bbox[2]), :] = foreground
         return template.astype(np.uint8)
 
@@ -291,10 +294,10 @@ class SpatialTrans:
     def center_crop(img: np.ndarray, shape: tuple):
         """return the center area in shape
         :param img: a ndarray
-        :param shape: center crop shape
+        :param shape: center crop shape (w, h)
         :return:
         """
         center = np.array(img.shape[:2])//2
-        init = center - np.array(shape)//2
+        init = center[::-1] - np.array(shape)//2
         bbox = tuple(init.tolist() + list(shape))
         return SpatialTrans.crop(img, bbox)

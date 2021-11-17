@@ -6,7 +6,7 @@ See https://github.com/ShenghuaCheng/Aided-Diagnosis-System-for-Cervical-Cancer-
 File name: base_config
 Description: abstract base class for all train config.
 """
-
+import os
 import pprint
 from abc import ABCMeta, abstractmethod
 from tabulate import tabulate
@@ -17,7 +17,8 @@ from keras.models import Model
 class BaseConfig(metaclass=ABCMeta):
 
     def __init__(self):
-        self.output_dir = "./OUTPUTS"
+        self.output_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+                                       "OUTPUTS")
 
     @abstractmethod
     def create_model(self, weight=None) -> Model:

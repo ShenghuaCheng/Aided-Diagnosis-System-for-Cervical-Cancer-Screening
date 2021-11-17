@@ -10,3 +10,4 @@ __pycache__
 datasets/*
 !datasets/README.md
 tmp
+OUTPUTS

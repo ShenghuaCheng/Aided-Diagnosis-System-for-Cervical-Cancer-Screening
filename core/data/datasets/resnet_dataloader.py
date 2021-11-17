@@ -89,5 +89,6 @@ class ResnetDataloader(Sequence):
         random.shuffle(self.shuffled_index)
 
     def on_epoch_end(self):
+        print()
         self._sampling()
         logger.info("Resampling from image pool ...")

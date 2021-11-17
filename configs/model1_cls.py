@@ -22,3 +22,6 @@ class Config(MyConfig):
         # --------------  transform config --------------------- #
         # --------------  training config --------------------- #
         self.config_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
+        # save real config file
+        os.makedirs(os.path.join(self.output_dir, self.config_name), exist_ok=True)
+        self._dataset.write_config(os.path.join(self.output_dir, self.config_name, "dataset.xlsx"))

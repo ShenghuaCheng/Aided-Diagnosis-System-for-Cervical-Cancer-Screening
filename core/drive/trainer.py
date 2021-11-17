@@ -65,10 +65,21 @@ class Trainer:
             self.callbacks.append(lr_scheduler)
 
         # save weights
-        weight_path = os.path.join(self.record_dir, "Epoch_{epoch:04d}_{val_loss:.3f}_{val_acc:.3f}.h5")
+        acc_name = [acc for acc in model.metrics_names if "acc" in acc]
+        if len(acc_name):
+            acc_name = acc_name[0]
+            val_acc_name = "val_" + acc_name
+            weight_path = os.path.join(self.record_dir, "Epoch_{epoch:04d}_{%s:.3f}_{%s:.3f}.h5" % (acc_name, val_acc_name))
+            monitor = val_acc_name
+            monitor_mode = "max"
+        else:
+            weight_path = os.path.join(self.record_dir, "Epoch_{epoch:04d}_{loss:.3f}_{val_loss:.3f}.h5")
+            monitor = "val_loss"
+            monitor_mode = "min"
+        logger.info(f"Weight monitor: {monitor} Monitor mode: {monitor_mode}")
         best_weight_path = os.path.join(self.record_dir, "best_ckpt.h5")
-        cb_save_each_weight = ModelCheckpoint(weight_path, "val_acc", save_weights_only=True)
-        cb_save_best_weight = ModelCheckpoint(best_weight_path, "val_acc", save_best_only=True, mode="max", save_weights_only=True)
+        cb_save_each_weight = ModelCheckpoint(weight_path, monitor, save_weights_only=True)
+        cb_save_best_weight = ModelCheckpoint(best_weight_path, monitor, save_best_only=True, mode=monitor_mode, save_weights_only=True)
         self.callbacks += [
             cb_save_each_weight,
             cb_save_best_weight
@@ -76,7 +87,7 @@ class Trainer:
 
         # monitor training
         log_path = os.path.join(self.record_dir, "train_log.csv")
-        cb_csv_log = CSVLogger(log_path, append=True)
+        cb_csv_log = CSVLogger(log_path, append=bool(self.ini_epoch))
         cb_tensorboard = TensorBoard(self.record_dir, write_graph=False)
         self.callbacks += [
             cb_csv_log,
