@@ -11,7 +11,7 @@ import argparse
 import random
 
 from core.config import load_config
-from core.drive import Trainer
+from core.driver import Trainer
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser("Train parser")
