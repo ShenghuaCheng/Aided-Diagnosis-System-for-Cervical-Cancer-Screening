@@ -177,7 +177,3 @@ class Config(BaseConfig):
             preprocess
         )
         return test_loader
-
-    def get_evaluator(self):
-
-    def evaluate(self):

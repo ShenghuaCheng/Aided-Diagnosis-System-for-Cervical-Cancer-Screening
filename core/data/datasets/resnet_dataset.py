@@ -94,6 +94,7 @@ class ResnetDataset:
         img_ls = []
         mpp_ls = []
         msk_ls = []
+        grp_names = []
         for i in range(len(sample_pool)):
             mpp = float(config["subset_mpp"][i])
             nb_smp = int(config["subset_sample"][i])
@@ -117,15 +118,17 @@ class ResnetDataset:
             # sampling
             if nb_smp:
                 sample_idx = random.sample(list(range(len(pl_smp))), nb_smp)
+                sample_idx = sorted(sample_idx)
                 # record
                 label += [lb_smp] * nb_smp
                 img_ls += np.array(pl_smp)[sample_idx].tolist()
                 mpp_ls += [mpp] * nb_smp
                 msk_ls += np.array(pl_msk)[sample_idx].tolist()
+                grp_names += [config["group_name"][i] + '_' + config["subset_name"][i]] * nb_smp
             else:
                 logger.warning("no mask found in {} Group: {} Subset: {}, check "
                                "the mask index file.".format(name, config["group_name"][i], config["subset_name"][i]))
-        return label, img_ls, mpp_ls, msk_ls
+        return label, img_ls, mpp_ls, msk_ls, grp_names
 
     def write_config(self, path):
         writer = pd.ExcelWriter(path)

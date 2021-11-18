@@ -54,7 +54,12 @@ class ResnetDataloader(Sequence):
             x, y = self._preprocess(sample_idx)
             batch_x.append(x)
             batch_y.append(y)
-        return np.array(batch_x), np.array(batch_y)
+        if self.name is "test":
+            # for "test" in evaluating which is driven by predict_generator, only data
+            return np.array(batch_x)
+        else:
+            # for "train" and "val", the labels is used for calculating loss
+            return np.array(batch_x), np.array(batch_y)
 
     def _preprocess(self, sample_idx):
         label = self.labels[sample_idx]
@@ -84,11 +89,19 @@ class ResnetDataloader(Sequence):
         return image, label
 
     def _sampling(self):
-        self.labels, self.images, self.mpp_ls, self.masks = self.dataset.sampling(self.name)
+        self.labels, self.images, self.mpp_ls, self.masks, self.grp_names = self.dataset.sampling(self.name)
         self.shuffled_index = list(range(len(self.images)))
-        random.shuffle(self.shuffled_index)
+        if self.name is not "test":
+            # "test: is for evaluator, shuffle is not necessary.
+            random.shuffle(self.shuffled_index)
 
     def on_epoch_end(self):
         print()
         self._sampling()
         logger.info(f"Resampling {self.name} from image pool ...")
+
+    def get_cur_labels(self):
+        if self.name is "test":
+            return self.labels, self.images, self.masks, self.grp_names
+        else:
+            raise ValueError(f"This API is used for 'test' set only. Order will be confusing in {self.name}.")
