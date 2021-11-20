@@ -9,3 +9,5 @@ Description: definition of different datasets.
 
 from .resnet_dataset import *
 from .resnet_dataloader import *
+from .rnn_dataset import *
+from .rnn_dataloader import *

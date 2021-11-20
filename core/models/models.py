@@ -15,7 +15,8 @@ __all__ = [
     "model1_loc",
     "model2_clf",
     "model1",
-    "model2"
+    "model2",
+    "wsi_clf"
 ]
 
 MODEL1_INPUT = (512, 512, 3)
@@ -43,4 +44,6 @@ def model2():
 
 
 def wsi_clf(top_n):
-    return simple_rnn((top_n, 2048), 512)
+    def rnn_clf():
+        return simple_rnn((top_n, 2048), 512)
+    return rnn_clf
