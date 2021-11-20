@@ -32,6 +32,10 @@ class Config(BaseConfig):
         self.input_size = (256, 256)
         self.input_mpp = 0.243
         # --------------  data loader config --------------------- #
+        self.encoder_weight = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+                                   "datasets/pretrained_weights/m2_Block_102.h5")
+        self._encoder = self.get_encoder()
+
         self.max_queue_size = 10
         # FIXME 20211117: can not apply multiprocessing
         self.use_multiprocessing = False
@@ -126,7 +130,7 @@ class Config(BaseConfig):
         train_loader = RnnDataloader(
             self._dataset,
             "train",
-            self.encoder,
+            self._encoder,
             self.top_n,
             self.top_rng,
             self.input_mpp,
@@ -151,7 +155,7 @@ class Config(BaseConfig):
         val_loader = RnnDataloader(
             self._dataset,
             "val",
-            self.encoder,
+            self._encoder,
             self.top_n,
             0,  # rng is zero
             self.input_mpp,
@@ -176,7 +180,7 @@ class Config(BaseConfig):
         test_loader = RnnDataloader(
             self._dataset,
             "test",
-            self.encoder,
+            self._encoder,
             self.top_n,
             0,
             self.input_mpp,
@@ -186,9 +190,10 @@ class Config(BaseConfig):
         )
         return test_loader
 
-    def get_encoder(self, weights):
+    def get_encoder(self):
+        logger.info("get encoder ...")
         from core.models import model2
         encoder = model2()
-        self.encoder = load_weights(encoder, weights)
-        return self.encoder
+        encoder = load_weights(encoder, self.encoder_weight)
+        return encoder
 
