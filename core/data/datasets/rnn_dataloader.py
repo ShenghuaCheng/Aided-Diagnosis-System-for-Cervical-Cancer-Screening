@@ -178,7 +178,7 @@ class RnnDataloader(Sequence):
 
     def get_cur_labels(self):
         if self.name is "test":
-            return self.labels, self.images, self.masks, self.grp_names
+            return self.labels, np.array(self.wsi_pools).flatten().tolist(), [None]*len(self.labels), self.grp_names
         else:
             raise ValueError(f"This API is used for 'test' set only. Order will be confusing in {self.name}.")
 
