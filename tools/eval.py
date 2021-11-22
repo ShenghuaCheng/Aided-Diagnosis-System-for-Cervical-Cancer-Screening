@@ -65,7 +65,7 @@ if __name__ == '__main__':
     )
     results = results.flatten()
 
-    save_dir = os.path.join(config.output_dir, "eval")
+    save_dir = os.path.join(config.output_dir, "eval", config.config_name)
     check_dir(save_dir, True, logger)
     weight_name = os.path.basename(weights[0]).split('.')[0]
     # record original results
