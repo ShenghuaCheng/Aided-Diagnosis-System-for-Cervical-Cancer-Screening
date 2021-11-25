@@ -15,7 +15,7 @@ import numpy as np
 from loguru import logger
 
 from core.data import Tiler, TileReader
-from core.utils import WSIResultRecorder, get_locations_on_heatmap, synthesize_wsi_clf_scores
+from core.utils import WSIResultRecorder, get_locations_on_heatmap, synthesize_wsi_clf_scores, remove_overlap_results
 from core.config.inference_base import InferenceConfig
 
 __all__ = [
@@ -163,11 +163,16 @@ class Inference:
 
     def model2_post_process(self):
         logger.info("Model2 post processing ...")
+        m2_points = self.recorder.m2_tile_bboxs[..., :2]
         m2_scores = self.recorder.m2_res_scores
-        m2_sorted_idx = np.argsort(m2_scores)[::-1]
 
-        self.recorder.most_suspicious_idx = m2_sorted_idx[:self.configs.most_suspicious_n]
-        self.recorder.wc_top_idx = m2_sorted_idx[:max(self.configs.wsi_clf_n)]
+        reserving_flags = remove_overlap_results(m2_scores, m2_points, self.tiler.mpp, distance_threshold=200)
+
+        m2_sorted_idx = np.argsort(m2_scores)[::-1]
+        m2_sorted_rm_overlap_idx = [i for i in m2_sorted_idx if reserving_flags[i]]
+
+        self.recorder.most_suspicious_idx = m2_sorted_rm_overlap_idx[:self.configs.most_suspicious_n]
+        self.recorder.wc_top_idx = m2_sorted_rm_overlap_idx[:max(self.configs.wsi_clf_n)]
 
     def do_wsi_clf_inference(self):
         m2_features = self.recorder.m2_res_features
