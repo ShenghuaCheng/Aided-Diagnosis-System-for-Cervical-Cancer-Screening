@@ -56,7 +56,7 @@ class WSIResultRecorder:
         wsi_clf_res = {"final": self.wsi_score}
         if intermediate:
             wsi_clf_res.update(self.wc_scores)
-        f = open(os.path.join(self.save_root, "wsi_clf.txt"), "w+")
+        f = open(os.path.join(self.save_root, "wsi_clf.json"), "w+")
         json.dump(wsi_clf_res, f, indent=2)
         f.close()
 
