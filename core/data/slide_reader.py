@@ -133,14 +133,16 @@ def mpp_transformer(origin, origin_mpp, aim_mpp):
     :param origin: original numbers
     :param origin_mpp:  original mpp
     :param aim_mpp: aim mpp
-    :return: transed numbers
+    :return: transed numbers, round down
     """
     if isinstance(origin, Iterable):
         transed = []
         for num in origin:
-            transed.append(int(np.around(num * origin_mpp / aim_mpp)))
+            # transed.append(int(np.around(num * origin_mpp / aim_mpp)))
+            transed.append(int(num * origin_mpp / aim_mpp))
     else:
-        transed = int(np.around(origin * origin_mpp / aim_mpp))
+        # transed = int(np.around(origin * origin_mpp / aim_mpp))
+        transed = int(origin * origin_mpp / aim_mpp)
     return transed
 
 

@@ -8,3 +8,4 @@ Description: package for driving train or eval process
 """
 
 from .trainer import *
+from .inference import *

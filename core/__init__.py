@@ -6,4 +6,3 @@ See https://github.com/ShenghuaCheng/Aided-Diagnosis-System-for-Cervical-Cancer-
 File name: __init__.py
 Description: Core module for project.
 """
-from .slide_reader import *

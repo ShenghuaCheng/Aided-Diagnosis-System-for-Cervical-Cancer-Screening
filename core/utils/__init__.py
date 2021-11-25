@@ -9,3 +9,5 @@ Description:
 from .lr_scheduler import *
 from .model_weight import *
 from .dataset_tools import *
+from .wsi_result_recorder import *
+from .inference_tools import *
