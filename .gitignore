@@ -9,5 +9,6 @@ __pycache__
 *.so
 datasets/*
 !datasets/README.md
+!datasets/demo.xlsx
 tmp
 OUTPUTS
