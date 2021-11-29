@@ -1,5 +1,14 @@
+# IDE
 .spyproject
 .vscode
-data_for_test
+.idea
+__pycache__
+
+# custom files
 *.dll
 *.so
+datasets/*
+!datasets/README.md
+!datasets/demo.xlsx
+tmp
+OUTPUTS
