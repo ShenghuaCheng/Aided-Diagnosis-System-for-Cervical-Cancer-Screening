@@ -1,6 +1,6 @@
 # Aided-Diagnosis-System-for-Cervical-Cancer-Screening
 
-[Journal Link](https://www.nature.com/articles/s41551-020-00682-w) | [Quick Start](#quick-start) | [Cite](#reference)
+[Journal Link](https://www.nature.com/articles/s41467-021-25296-x) | [Quick Start](#quick-start) | [Cite](#reference)
 
 > Recommend the top k lesion cells and predict the positive probability of WSIs.
 
