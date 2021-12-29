@@ -1,16 +1,22 @@
 # Aided-Diagnosis-System-for-Cervical-Cancer-Screening
+
+[Journal Link](https://www.nature.com/articles/s41551-020-00682-w) | [Quick Start](#quick-start) | [Cite](#reference)
+
 > Recommend the top k lesion cells and predict the positive probability of WSIs.
+
+
 ---
-## Computer requirements
-System: Win10 \
+## Requirements
+### Hardware 
 GPU: Nvidia 1080Ti or better (at least 10G memory)\
 CPU: Intel i7 or better\
 System Memory: 16G or better
-
-## Environment requirements
+### Software
+System: Win10 \
 Nvidia GPU corresponding driver\
 CUDA: cuda 9.0\
-cudnn: cudnn 7.0\
+cudnn: cudnn 7.0
+### Python
 Python: 3.6\
 Tensorflow-gpu: 1.7.0\
 Tensorboard: 1.7.0\
@@ -23,11 +29,15 @@ Pandas: 0.20.3\
 Scikit-image: 0.17.2\
 Scikit-learn: 0.23.2
 
+---
+
 ## Supported WSI formats
 WSI formats supported by the opensource OpenSlide library, including `x.svs`, `x.mrxs`, `x.tif`, etc;
 WSI resolution: 20× or 40× （0.1 – 0.6 um/pixel, 0.1 – 0.4 um/pixel is better)
 
-## Quick Start
+---
+
+<h2 id="quick-start">Quick Start</h2>
 
 <details>
 <summary>Installation</summary>
@@ -108,9 +118,28 @@ python tools/convert_to_pb.py -m model1 -w [path to weights] -o [path to save]
 </details>
 
 ---
-<h1 id="c-software">C++ software</h1>
+<h2 id="c-software">C++ software</h2>
 
 [The C++ software](./SoftwareManual/SoftwareManual.md) with test WSIs is available at [Baidu Cloud](https://pan.baidu.com/s/1UmQzASwvlpKLO7hbwaDc_A).
 Correspongding [user manual pdf](./SoftwareManual/Software%20User%20Manual.pdf) is uploaded.\
 Codes can be provided by email xlliu@mail.hust.edu.cn or chengshen@hust.edu.cn.
 
+---
+<h2 id="reference">Reference</h2>
+
+If our work is useful for your research, please consider citing our [paper](https://www.nature.com/articles/s41467-021-25296-x):
+
+Cheng, S., Liu, S., Yu, J. et al. Robust whole slide image analysis for cervical cancer screening using deep learning. Nat Commun 12, 5639 (2021). https://doi.org/10.1038/s41467-021-25296-x
+
+```
+@article{cheng2021robust,
+  title={Robust whole slide image analysis for cervical cancer screening using deep learning},
+  author={Cheng, Shenghua and Liu, Sibo and Yu, Jingya and Rao, Gong and Xiao, Yuwei and Han, Wei and Zhu, Wenjie and Lv, Xiaohua and Li, Ning and Cai, Jing and others},
+  journal={Nature communications},
+  volume={12},
+  number={1},
+  pages={1--10},
+  year={2021},
+  publisher={Nature Publishing Group}
+}
+```
