@@ -137,8 +137,7 @@ Cheng, S., Liu, S., Yu, J. et al. Robust whole slide image analysis for cervical
   author={Cheng, Shenghua and Liu, Sibo and Yu, Jingya and Rao, Gong and Xiao, Yuwei and Han, Wei and Zhu, Wenjie and Lv, Xiaohua and Li, Ning and Cai, Jing and others},
   journal={Nature communications},
   volume={12},
-  number={1},
-  pages={1--10},
+  number={5639},
   year={2021},
   publisher={Nature Publishing Group}
 }
