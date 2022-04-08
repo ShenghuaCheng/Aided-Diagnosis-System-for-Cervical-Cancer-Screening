@@ -122,7 +122,7 @@ python tools/convert_to_pb.py -m model1 -w [path to weights] -o [path to save]
 
 [The C++ software](./SoftwareManual/SoftwareManual.md) with test WSIs is available at [Baidu Cloud](https://pan.baidu.com/s/1UmQzASwvlpKLO7hbwaDc_A).
 Correspongding [user manual pdf](./SoftwareManual/Software%20User%20Manual.pdf) is uploaded.\
-Codes can be provided by email xlliu@mail.hust.edu.cn or chengshen@hust.edu.cn.
+Extracting code can be provided by email xlliu@mail.hust.edu.cn or chengshen@hust.edu.cn.
 
 ---
 <h2 id="reference">Reference</h2>
